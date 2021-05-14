@@ -6,10 +6,6 @@
     font-weight: bold;
 }
 
-body {
-    background: #fff;
-}
-
 .flex {
     display: flex;
 }
