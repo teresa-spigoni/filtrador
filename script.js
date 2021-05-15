@@ -24,12 +24,9 @@ function filter(nomeFiltro, uMeasure) {
         allFilters += `${el}${uMeasure}) `;
     } else {
         let a = allFilters.indexOf(nomeFiltro);
-        let b = allFilters.substring(a);
-        let c = b.indexOf(' ') + a;
-
-        allFilters = allFilters.replace(allFilters.substring(a, c) + ' ', `${el}${uMeasure}) `);
+        let b = allFilters.substring(a).indexOf(' ') + a;
+        allFilters = allFilters.replace(allFilters.substring(a, b) + ' ', `${el}${uMeasure}) `);
     }
-
     img.style.filter = `${allFilters}`;
 }
 
