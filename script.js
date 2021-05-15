@@ -16,18 +16,25 @@ let contrast = document.getElementById('contrast');
 let brightness = document.getElementById('brightness');
 let blur = document.getElementById('blur');
 let img = document.getElementById('img');
+let allFilters = '';
 
-function filter(nomeFiltro) {
-    if (nomeFiltro === 'hue-rotate') {
-        img.style.filter = `${nomeFiltro}(${hueRotate.value}deg)`;
-    } else if (nomeFiltro === 'blur') {
-        img.style.filter = `${nomeFiltro}(${blur.value}px)`;
+function filter(nomeFiltro, uMeasure) {
+    let el = `${nomeFiltro}(${document.getElementById(nomeFiltro).value}`;
+    if (!allFilters.includes(nomeFiltro)) {
+        allFilters += `${el}${uMeasure}) `;
     } else {
-        img.style.filter = `${nomeFiltro}(${document.getElementById(nomeFiltro).value}%)`;
+        let a = allFilters.indexOf(nomeFiltro);
+        let b = allFilters.substring(a);
+        let c = b.indexOf(' ') + a;
+
+        allFilters = allFilters.replace(allFilters.substring(a, c) + ' ', `${el}${uMeasure}) `);
     }
+
+    img.style.filter = `${allFilters}`;
 }
 
 function filterDefault() {
+    allFilters = '';
     img.style.filter = 'none';
 
     sepia.value = 0;
